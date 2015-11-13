@@ -4,7 +4,7 @@
 #include<stdio.h>
 using namespace std;
 class TUAD{
-private:
+public:
 	int vec[1000];
 public:
 	TUAD();

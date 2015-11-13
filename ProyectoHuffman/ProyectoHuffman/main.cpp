@@ -25,7 +25,7 @@ int main(){
 		cout << "[7]   MOSTRARLISTA" << endl;
 		cout << "[8]   INSERTARENSULUGAR" << endl;
 		cout << "[9]   ELIMINARELEMENTODADO" << endl;
-		cout << "[10]  INVERTIRLISTA" << endl;
+		cout << "[10]  extraerCarsTUAD" << endl;
 		cout << "[11]  SALIR" << endl;
 		cout << "Ingresar opcion: " ;
 		cin >> opcion;
@@ -114,8 +114,7 @@ int main(){
 					 break;
 
 				 case 10:
-//					 lf8.invertirLISTA();
-					 cout<<res<<endl;
+					 lf8.extraerCarsTUAD();
 					 system("pause");
 					 system("cls");
 					 break; 

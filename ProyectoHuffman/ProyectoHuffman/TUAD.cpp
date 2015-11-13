@@ -16,10 +16,11 @@ void TUAD::cargarTxtTUAD()
 {
 	ifstream archivo("texto.txt");
 	char car;
-	int res;
+//	int res;
 	while (!archivo.eof()){
        car=archivo.get();
-	   res=insertarTUAD(car);
+	   if(insertarTUAD(car))
+		   cout<<"Exito"<<endl;	   
 	}
 	archivo.close();
 }
@@ -27,10 +28,12 @@ void TUAD::cargarTxtTUAD()
 int TUAD::funcionTUAD(char l)
 {
 	int let=l;
-	if (let>=65 && let<=90)
-		return let-65;
-	if (let>=97 && let<=122)
-		return let-97;
+	int res=0;
+	if (let>=65 && let<=90){
+		res = let-65;}
+	if (let>=97 && let<=122){
+		res = let-97; }
+	return res;
 }
 
 int TUAD::insertarTUAD(char l)

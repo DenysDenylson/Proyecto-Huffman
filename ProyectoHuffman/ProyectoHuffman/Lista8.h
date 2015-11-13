@@ -1,6 +1,7 @@
 #ifndef LISTAFORMA8_H
 #define LISTAFORMA8_H
 #include"Tripla.h"
+#include"TUAD.h"
 using namespace std;
 template<class T>
 class ListaForma8{
@@ -17,6 +18,7 @@ public:
 	int eliminarDADO(T el);
 	T menorNOREC(int *existe);
 	int insertarEnSuLUGAR(T el, int frecuencia);
+	void extraerCarsTUAD();
 	//void invertirLISTA();
 	void mostrar();
 };
@@ -96,14 +98,14 @@ int ListaForma8<T>::insertarEnSuLUGAR(T el, int frecuencia)
 	if(primer==NULL){
 		insertarPRIN(el, frecuencia);
 	}else{
-		if (el<primer->el){
+		if (frecuencia<primer->frecuencia){
 			insertarPRIN(el, frecuencia);
 		}else{
-			if (el>ultimo->el){
+			if (frecuencia>ultimo->frecuencia){
 				insertarFIN(el, frecuencia);
 			}else{
 				Tripla<T> *aux=primer->sig;
-				while (aux->el<el && aux!=ultimo){
+				while (aux->frecuencia<frecuencia && aux!=ultimo){
 					aux=aux->sig;
 				}
 				Tripla<T> *nuevo;
@@ -230,6 +232,19 @@ T ListaForma8<T>::menorNOREC(int *existe)
 //}
 
 template<class T>
+void ListaForma8<T>::extraerCarsTUAD()
+{
+	TUAD tuad;
+	tuad.cargarTxtTUAD();
+	char let;
+	for(int i=0 ; i<26 ; i++){
+		let=i+65;
+		insertarEnSuLUGAR(let, tuad.vec[i]);
+	}
+}
+
+
+template<class T>
 void ListaForma8<T>::mostrar()
 {
 	if(primer==NULL){
@@ -244,5 +259,8 @@ void ListaForma8<T>::mostrar()
 		cout << ultimo->el << "=>" << aux->frecuencia << "}" << endl;
 	}	
 }
+
+//template<class T>
+//ListaForma8<char>;
 
 #endif
