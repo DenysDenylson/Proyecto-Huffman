@@ -5,7 +5,7 @@
 using namespace std;
 class TUAD{
 private:
-	int vec[52];
+	int vec[1000];
 public:
 	TUAD();
 	~TUAD();
