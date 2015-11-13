@@ -11,13 +11,13 @@ public:
 	ListaForma8();
 	~ListaForma8();
 	int insertarPRIN(T el, int frecuencia);
-	int insertarFIN(T el);
+	int insertarFIN(T el, int frecuencia);
 	int eliminarPRIN();
 	int eliminarFIN();
 	int eliminarDADO(T el);
 	T menorNOREC(int *existe);
-	//int insertarEnSuLUGAR(T el);
-	void invertirLISTA();
+	int insertarEnSuLUGAR(T el, int frecuencia);
+	//void invertirLISTA();
 	void mostrar();
 };
 
@@ -70,52 +70,55 @@ int ListaForma8<T>::insertarPRIN(T el, int frecuencia)
 }
 
 template<class T>
-int ListaForma8<T>::insertarFIN(T el)
+int ListaForma8<T>::insertarFIN(T el, int frecuencia)
 {
 	int res=1;
 	if(ultimo==NULL){
 		ultimo=new Tripla<T>;
 		primer=ultimo;
 		ultimo->el=el;
+		ultimo->frecuencia = frecuencia;
 	}else{
 		Tripla<T> *aux=ultimo;
 		ultimo=new Tripla<T>;
 		aux->sig=ultimo;
 		ultimo->ant=aux;
 		ultimo->el=el;
+		ultimo->frecuencia = frecuencia;
 	}
 	return res;
 }
-//
-//template<class T>
-//int ListaForma8<T>::insertarEnSuLUGAR(T el)
-//{
-//	int res=1;
-//	if(primer==NULL){
-//		insertarPRIN(el);
-//	}else{
-//		if (el<primer->el){
-//			insertarPRIN(el);
-//		}else{
-//			if (el>ultimo->el){
-//				insertarFIN(el);
-//			}else{
-//				Tripla<T> *aux=primer->sig;
-//				while (aux->el<el && aux!=ultimo){
-//					aux=aux->sig;
-//				}
-//				Tripla<T> *nuevo;
-//				nuevo=new Tripla<T>;
-//				nuevo->sig=aux;
-//				nuevo->ant=aux->ant;
-//				(aux->ant)->sig=nuevo;
-//				aux->ant=nuevo;
-//				nuevo->el=el;
-//			}
-//		}
-//	}
-//	return res;
-//}
+
+template<class T>
+int ListaForma8<T>::insertarEnSuLUGAR(T el, int frecuencia)
+{
+	int res=1;
+	if(primer==NULL){
+		insertarPRIN(el, frecuencia);
+	}else{
+		if (el<primer->el){
+			insertarPRIN(el, frecuencia);
+		}else{
+			if (el>ultimo->el){
+				insertarFIN(el, frecuencia);
+			}else{
+				Tripla<T> *aux=primer->sig;
+				while (aux->el<el && aux!=ultimo){
+					aux=aux->sig;
+				}
+				Tripla<T> *nuevo;
+				nuevo=new Tripla<T>;
+				nuevo->sig=aux;
+				nuevo->ant=aux->ant;
+				(aux->ant)->sig=nuevo;
+				aux->ant=nuevo;
+				nuevo->el=el;
+				nuevo->frecuencia = frecuencia;
+			}
+		}
+	}
+	return res;
+}
 
 template<class T>
 int ListaForma8<T>::eliminarPRIN()
@@ -209,22 +212,22 @@ T ListaForma8<T>::menorNOREC(int *existe)
 	return menor;
 }
 
-template<class T>
-void ListaForma8<T>::invertirLISTA()
-{
-	Tripla<T> *i;
-	i=ultimo;
-	ListaForma8 l2;
-	while (i!=primer){		
-		l2.insertarFIN(i->el);
-		i=i->ant;	
-		eliminarFIN();
-	}
-	l2.insertarFIN(primer->el);
-	eliminarPRIN();
-	l2.mostrar();
-
-}
+//template<class T>
+//void ListaForma8<T>::invertirLISTA()
+//{
+//	Tripla<T> *i;
+//	i=ultimo;
+//	ListaForma8 l2;
+//	while (i!=primer){		
+//		l2.insertarFIN(i->el);
+//		i=i->ant;	
+//		eliminarFIN();
+//	}
+//	l2.insertarFIN(primer->el);
+//	eliminarPRIN();
+//	l2.mostrar();
+//
+//}
 
 template<class T>
 void ListaForma8<T>::mostrar()

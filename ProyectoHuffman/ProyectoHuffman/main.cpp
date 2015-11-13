@@ -44,8 +44,10 @@ int main(){
 
 				 case 2:
 					 cout<<"elemento:";
-					 cin>>el;
-					 res=lf8.insertarFIN(el);
+					 cin >> el; cout << endl;
+					 cout << "frecuencia:";
+					 cin >> frecuencia;
+					 res = lf8.insertarFIN(el, frecuencia);
 					 cout<<res<<endl;
 					 system("pause");
 					 system("cls");
@@ -93,10 +95,12 @@ int main(){
 
 				 case 8:
 					 cout<<"elemento:";
-					 cin>>el;
-					 /*res=lf8.insertarEnSuLUGAR(el);
+					 cin >> el; cout << endl;
+					 cout << "frecuencia:";
+					 cin >> frecuencia;
+					 res=lf8.insertarEnSuLUGAR(el,frecuencia);
 					 cout<<res<<endl;
-					 system("pause");*/
+					 system("pause");
 					 system("cls");
 					 break;
 
@@ -110,7 +114,7 @@ int main(){
 					 break;
 
 				 case 10:
-					 lf8.invertirLISTA();
+//					 lf8.invertirLISTA();
 					 cout<<res<<endl;
 					 system("pause");
 					 system("cls");
