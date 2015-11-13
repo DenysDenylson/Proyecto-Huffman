@@ -1,8 +1,9 @@
 #include"TUAD.h"
 #include<fstream>
+
 TUAD::TUAD()
 {
-	for (int i = 0; i < 52; i++){
+	for (int i = 0; i < 50; i++){
 		vec[i]=0;
 	}
 }
@@ -13,18 +14,19 @@ TUAD::~TUAD()
 
 void TUAD::cargarTxtTUAD()
 {
-	ifstream archivo("cien_años_de_soledad.txt");
+	ifstream archivo("texto.txt");
 	char car;
+	int res;
 	while (!archivo.eof()){
        car=archivo.get();
-	   insertarTUAD(car);
+	   res=insertarTUAD(car);
 	}
 	archivo.close();
 }
 
 int TUAD::funcionTUAD(char l)
 {
-	int let=l, pos=0;
+	int let=l;
 	if (let>=65 && let<=90)
 		return let-65;
 	if (let>=97 && let<=122)
