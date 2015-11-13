@@ -1,5 +1,7 @@
 #include"TUAD.h"
 
+
+
 int main()
 {
 TUAD tuad;
@@ -24,6 +26,7 @@ switch (opcion)
 			 system("pause");
              system("cls");
 			 break;
+
         case 2:
 			 tuad.mostrarTUAD();
 			 system("pause");
