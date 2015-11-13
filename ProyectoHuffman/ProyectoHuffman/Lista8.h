@@ -19,7 +19,6 @@ public:
 	T menorNOREC(int *existe);
 	int insertarEnSuLUGAR(T el, int frecuencia);
 	void extraerCarsTUAD();
-	//void invertirLISTA();
 	void mostrar();
 };
 
@@ -214,23 +213,6 @@ T ListaForma8<T>::menorNOREC(int *existe)
 	return menor;
 }
 
-//template<class T>
-//void ListaForma8<T>::invertirLISTA()
-//{
-//	Tripla<T> *i;
-//	i=ultimo;
-//	ListaForma8 l2;
-//	while (i!=primer){		
-//		l2.insertarFIN(i->el);
-//		i=i->ant;	
-//		eliminarFIN();
-//	}
-//	l2.insertarFIN(primer->el);
-//	eliminarPRIN();
-//	l2.mostrar();
-//
-//}
-
 template<class T>
 void ListaForma8<T>::extraerCarsTUAD()
 {
@@ -253,14 +235,13 @@ void ListaForma8<T>::mostrar()
 		Tripla<T> *aux=primer;
 		cout<<"L={";
 		while (aux->sig!=NULL){
-			cout<<aux->el<<"=>"<<aux->frecuencia<<",";
+			cout<<aux->el<<"=>"<<aux->frecuencia<<"cant. Nodos:"<<aux->arbol.contarNodosABB(aux->arbol.RAIZ) << ",";
+			//cout<<"cant. Nodos:"<<aux->arbol->contarNodosABB(aux->arbol->RAIZ);
 			aux=aux->sig;
 		}
-		cout << ultimo->el << "=>" << aux->frecuencia << "}" << endl;
+		cout << ultimo->el << "=>" << ultimo->frecuencia << "cant. Nodos:"<<ultimo->arbol.contarNodosABB(ultimo->arbol.RAIZ) << "}" << endl;
+		//cout<<"cant. Nodos:"<<ultimo->arbol->contarNodosABB(ultimo->arbol->RAIZ);
 	}	
 }
-
-//template<class T>
-//ListaForma8<char>;
 
 #endif
