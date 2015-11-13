@@ -6,7 +6,7 @@ int main(){
 
 	ListaForma8<char> lf8;
 	char el, res1;
-	int opcion, res, existe=0;
+	int opcion, res, existe = 0, frecuencia=0;
 
 		do
 		{
@@ -33,8 +33,10 @@ int main(){
 		{
 				 case 1:
 					 cout<<"elemento:";
-					 cin>>el;
-					 res=lf8.insertarPRIN(el);
+					 cin >> el; cout << endl;
+					 cout << "frecuencia:";
+					 cin >> frecuencia;
+					 res=lf8.insertarPRIN(el,frecuencia);
 					 cout<<res<<endl;
 					 system("pause");
 					 system("cls");
@@ -92,9 +94,9 @@ int main(){
 				 case 8:
 					 cout<<"elemento:";
 					 cin>>el;
-					 res=lf8.insertarEnSuLUGAR(el);
+					 /*res=lf8.insertarEnSuLUGAR(el);
 					 cout<<res<<endl;
-					 system("pause");
+					 system("pause");*/
 					 system("cls");
 					 break;
 

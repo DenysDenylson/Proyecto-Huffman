@@ -10,13 +10,13 @@ private:
 public:
 	ListaForma8();
 	~ListaForma8();
-	int insertarPRIN(T el);
+	int insertarPRIN(T el, int frecuencia);
 	int insertarFIN(T el);
 	int eliminarPRIN();
 	int eliminarFIN();
 	int eliminarDADO(T el);
 	T menorNOREC(int *existe);
-	int insertarEnSuLUGAR(T el);
+	//int insertarEnSuLUGAR(T el);
 	void invertirLISTA();
 	void mostrar();
 };
@@ -50,19 +50,21 @@ ListaForma8<T>::~ListaForma8()
 }
 
 template<class T>
-int ListaForma8<T>::insertarPRIN(T el)
+int ListaForma8<T>::insertarPRIN(T el, int frecuencia)
 {
 	int res=1;
 	if(primer==NULL){
 		primer=new Tripla<T>;
 		ultimo=primer;
 		primer->el=el;
+		primer->frecuencia = frecuencia;
 	}else{
 		Tripla<T> *aux=primer;
 		primer=new Tripla<T>;
 		aux->ant=primer;
 		primer->sig=aux;
 		primer->el=el;
+		primer->frecuencia = frecuencia;
 	}
 	return res;
 }
@@ -84,36 +86,36 @@ int ListaForma8<T>::insertarFIN(T el)
 	}
 	return res;
 }
-
-template<class T>
-int ListaForma8<T>::insertarEnSuLUGAR(T el)
-{
-	int res=1;
-	if(primer==NULL){
-		insertarPRIN(el);
-	}else{
-		if (el<primer->el){
-			insertarPRIN(el);
-		}else{
-			if (el>ultimo->el){
-				insertarFIN(el);
-			}else{
-				Tripla<T> *aux=primer->sig;
-				while (aux->el<el && aux!=ultimo){
-					aux=aux->sig;
-				}
-				Tripla<T> *nuevo;
-				nuevo=new Tripla<T>;
-				nuevo->sig=aux;
-				nuevo->ant=aux->ant;
-				(aux->ant)->sig=nuevo;
-				aux->ant=nuevo;
-				nuevo->el=el;
-			}
-		}
-	}
-	return res;
-}
+//
+//template<class T>
+//int ListaForma8<T>::insertarEnSuLUGAR(T el)
+//{
+//	int res=1;
+//	if(primer==NULL){
+//		insertarPRIN(el);
+//	}else{
+//		if (el<primer->el){
+//			insertarPRIN(el);
+//		}else{
+//			if (el>ultimo->el){
+//				insertarFIN(el);
+//			}else{
+//				Tripla<T> *aux=primer->sig;
+//				while (aux->el<el && aux!=ultimo){
+//					aux=aux->sig;
+//				}
+//				Tripla<T> *nuevo;
+//				nuevo=new Tripla<T>;
+//				nuevo->sig=aux;
+//				nuevo->ant=aux->ant;
+//				(aux->ant)->sig=nuevo;
+//				aux->ant=nuevo;
+//				nuevo->el=el;
+//			}
+//		}
+//	}
+//	return res;
+//}
 
 template<class T>
 int ListaForma8<T>::eliminarPRIN()
@@ -233,10 +235,10 @@ void ListaForma8<T>::mostrar()
 		Tripla<T> *aux=primer;
 		cout<<"L={";
 		while (aux->sig!=NULL){
-			cout<<aux->el<<",";
+			cout<<aux->el<<"=>"<<aux->frecuencia<<",";
 			aux=aux->sig;
 		}
-		cout<<ultimo->el<<"}"<<endl;
+		cout << ultimo->el << "=>" << aux->frecuencia << "}" << endl;
 	}	
 }
 

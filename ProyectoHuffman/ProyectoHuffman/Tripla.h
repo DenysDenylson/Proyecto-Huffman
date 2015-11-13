@@ -7,6 +7,7 @@ template<class T>
 class Tripla{
 public:
 	T el;
+	int frecuencia;
 	Tripla<T> *sig;
 	Tripla<T> *ant;
 public:

@@ -156,3 +156,4 @@ $RECYCLE.BIN/
 .DS_Store
 ProyectoHuffman/ProyectoHuffman/ProyectoHuffman.vcxproj
 ProyectoHuffman/ProyectoHuffman/ProyectoHuffman.vcxproj.filters
+*.vcxproj
