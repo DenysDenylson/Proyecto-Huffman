@@ -6,11 +6,12 @@ using namespace std;
 template<class T>
 class ListaForma8{
 private:
+
 	Tripla<T> *primer;
 	Tripla<T> *ultimo;
 public:
 	ListaForma8();
-	~ListaForma8();
+	~ListaForma8();	
 	int insertarPRIN(T el, int frecuencia);
 	int insertarFIN(T el, int frecuencia);
 	int eliminarPRIN();
@@ -20,6 +21,7 @@ public:
 	int insertarEnSuLUGAR(T el, int frecuencia);
 	void extraerCarsTUAD();
 	void mostrar();
+	bool crear_arbol();
 };
 
 template<class T>
@@ -58,14 +60,16 @@ int ListaForma8<T>::insertarPRIN(T el, int frecuencia)
 		primer=new Tripla<T>;
 		ultimo=primer;
 		primer->el=el;
-		primer->frecuencia = frecuencia;
+		primer->frecuencia=frecuencia;
+		primer->arbol.insertarABB(primer->arbol.RAIZ, el, frecuencia);
 	}else{
 		Tripla<T> *aux=primer;
 		primer=new Tripla<T>;
 		aux->ant=primer;
 		primer->sig=aux;
 		primer->el=el;
-		primer->frecuencia = frecuencia;
+		primer->frecuencia=frecuencia;
+		primer->arbol.insertarABB(primer->arbol.RAIZ, el, frecuencia);
 	}
 	return res;
 }
@@ -78,14 +82,16 @@ int ListaForma8<T>::insertarFIN(T el, int frecuencia)
 		ultimo=new Tripla<T>;
 		primer=ultimo;
 		ultimo->el=el;
-		ultimo->frecuencia = frecuencia;
+		ultimo->frecuencia=frecuencia;
+		ultimo->arbol.insertarABB(ultimo->arbol.RAIZ, el, frecuencia);
 	}else{
 		Tripla<T> *aux=ultimo;
 		ultimo=new Tripla<T>;
 		aux->sig=ultimo;
 		ultimo->ant=aux;
 		ultimo->el=el;
-		ultimo->frecuencia = frecuencia;
+		ultimo->frecuencia=frecuencia;
+		ultimo->arbol.insertarABB(ultimo->arbol.RAIZ, el, frecuencia);
 	}
 	return res;
 }
@@ -114,7 +120,8 @@ int ListaForma8<T>::insertarEnSuLUGAR(T el, int frecuencia)
 				(aux->ant)->sig=nuevo;
 				aux->ant=nuevo;
 				nuevo->el=el;
-				nuevo->frecuencia = frecuencia;
+				nuevo->frecuencia=frecuencia;
+				nuevo->arbol.insertarABB(nuevo->arbol.RAIZ, el, frecuencia);
 			}
 		}
 	}
@@ -235,13 +242,32 @@ void ListaForma8<T>::mostrar()
 		Tripla<T> *aux=primer;
 		cout<<"L={";
 		while (aux->sig!=NULL){
-			cout<<aux->el<<"=>"<<aux->frecuencia<<"cant. Nodos:"<<aux->arbol.contarNodosABB(aux->arbol.RAIZ) << ",";
-			//cout<<"cant. Nodos:"<<aux->arbol->contarNodosABB(aux->arbol->RAIZ);
+			cout<<aux->el<<"=>"<<aux->frecuencia<<" ABB => ";
+			aux->arbol.recorrerPRE(aux->arbol.RAIZ);
 			aux=aux->sig;
 		}
-		cout << ultimo->el << "=>" << ultimo->frecuencia << "cant. Nodos:"<<ultimo->arbol.contarNodosABB(ultimo->arbol.RAIZ) << "}" << endl;
-		//cout<<"cant. Nodos:"<<ultimo->arbol->contarNodosABB(ultimo->arbol->RAIZ);
+		cout<<ultimo->el<<"=>"<<ultimo->frecuencia<<" ABB => ";	
+		ultimo->arbol.recorrerPRE(ultimo->arbol.RAIZ);
+		cout<<"}"<<endl;
 	}	
 }
 
+template<class T>
+bool ListaForma8<T>::crear_arbol()
+{
+	if(primer==NULL){
+		return false;
+	}else{
+		if (primer==ultimo){
+			return true;
+		}//else{
+			/*Tripla<T> *aux1 = primer;
+			Tripla<T> *aux2 = primer->sig;
+
+			int nueva_frecuencia = aux1->frecuencia*/
+
+		//}
+		return false;
+	}	
+}
 #endif

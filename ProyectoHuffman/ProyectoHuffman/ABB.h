@@ -11,16 +11,11 @@ public:
 	ABB();
 	~ABB();
 	void eliminarABB(Nodo<T> *&RAIZ);
-	void insertarABB(Nodo<T> *&RAIZ, T el);
-	void recorrerIN(Nodo<T> *RAIZ);
+	void insertarABB(Nodo<T> *&RAIZ, T el,int frecuencia);
 	void recorrerPRE(Nodo<T> *RAIZ);
-	void recorrerPOST(Nodo<T> *RAIZ);
 	void mostrarNivel(Nodo<T> *RAIZ,int nivel, int cont);
 	int contarNodosABB(Nodo<T> *RAIZ);
 	int calcularAlturaABB(Nodo<T> *RAIZ);
-	T menorABB(Nodo<T> *RAIZ, int *existe);
-	T mayorABB(Nodo<T> *RAIZ, int *existe);
-	int eliminarDadoABB(Nodo<T> *&RAIZ, T el);
 	int buscarABB(Nodo<T> *RAIZ, T el);
 };
 
@@ -48,29 +43,22 @@ ABB<T>::~ABB()
 }
 
 template<class T>
-void ABB<T>::insertarABB(Nodo<T> *&RAIZ, T el)
+void ABB<T>::insertarABB(Nodo<T> *&RAIZ, T el, int frecuencia)
 {
 	if (RAIZ==NULL){
 		RAIZ=new Nodo<T>;
 		RAIZ->el=el;
+		RAIZ->frecuencia=frecuencia;
 	}else{
-		if (el<RAIZ->el){
-			insertarABB(RAIZ->S_IZQ,el);
+		//if (el<RAIZ->el){
+		if(RAIZ->S_IZQ==NULL){
+			insertarABB(RAIZ->S_IZQ, el, frecuencia);
 		}else{
-			if (el>RAIZ->el){
-				insertarABB(RAIZ->S_DER,el);
+			//if (el>RAIZ->el){
+			if(RAIZ->S_DER==NULL){
+				insertarABB(RAIZ->S_DER, el, frecuencia);
 			}
 		}
-	}
-}
-
-template <class T>
-void ABB<T>::recorrerIN(Nodo<T> *RAIZ)
-{
-	if(RAIZ!=NULL){
-		recorrerIN(RAIZ->S_IZQ);
-		cout<<RAIZ->el<<",";
-		recorrerIN(RAIZ->S_DER);
 	}
 }
 
@@ -95,19 +83,9 @@ template <class T>
 void ABB<T>::recorrerPRE(Nodo<T> *RAIZ)
 {
 	if(RAIZ!=NULL){
-		cout<<RAIZ->el<<",";
+		cout<<RAIZ->el<<"=>"<<RAIZ->frecuencia<<",";
 		recorrerPRE(RAIZ->S_IZQ);
 		recorrerPRE(RAIZ->S_DER);
-	}
-}
-
-template <class T>
-void ABB<T>::recorrerPOST(Nodo<T> *RAIZ)
-{
-	if(RAIZ!=NULL){
-		recorrerPOST(RAIZ->S_IZQ);
-		recorrerPOST(RAIZ->S_DER);
-		cout<<RAIZ->el<<",";
 	}
 }
 
@@ -141,48 +119,6 @@ int ABB<T>::calcularAlturaABB(Nodo<T> *RAIZ)
 		}
 	}
 	return res;
-}
-
-template <class T>
-T ABB<T>::menorABB(Nodo<T> *RAIZ, int *existe)
-{
-	T menor;
-	if (RAIZ==NULL){
-		*existe=0;
-	}else{
-		if(RAIZ->S_IZQ==NULL)
-		{
-			menor=RAIZ->el;
-			*existe=1;
-		}else{
-			menor=menorABB(RAIZ->S_IZQ,existe);
-		}
-	}
-	return menor;
-}
-
-template <class T>
-T ABB<T>::mayorABB(Nodo<T> *RAIZ, int *existe)
-{
-	T mayor;
-	if (RAIZ==NULL){
-		*existe=0;
-	}else{
-		if(RAIZ->S_DER==NULL)
-		{
-			mayor=RAIZ->el;
-			*existe=1;
-		}else{
-			mayor=mayorABB(RAIZ->S_DER,existe);
-		}
-	}
-	return mayor;
-}
-
-template <class T>
-int ABB<T>::eliminarDadoABB(Nodo<T> *&RAIZ, T el)
-{
-
 }
 
 template <class T>

@@ -16,11 +16,10 @@ void TUAD::cargarTxtTUAD()
 {
 	ifstream archivo("texto.txt");
 	char car;
-//	int res;
+	int res;
 	while (!archivo.eof()){
        car=archivo.get();
-	   if(insertarTUAD(car))
-		   cout<<"Exito"<<endl;	   
+	   res=insertarTUAD(car);  
 	}
 	archivo.close();
 }

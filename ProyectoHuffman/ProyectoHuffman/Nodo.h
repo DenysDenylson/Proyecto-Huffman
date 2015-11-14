@@ -6,6 +6,7 @@ template<class T>
 class Nodo{
 public:
 	T el;
+	int frecuencia;
 	Nodo<T> *S_IZQ;
 	Nodo<T> *S_DER;
 public:
@@ -16,6 +17,8 @@ public:
 template<class T>
 Nodo<T>::Nodo()
 {	
+	el=NULL;
+	frecuencia=0;
 	S_IZQ=NULL;
 	S_DER=NULL;
 }
