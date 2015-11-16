@@ -255,19 +255,14 @@ void ListaForma8<T>::mostrar()
 template<class T>
 bool ListaForma8<T>::crear_arbol()
 {
+	bool res;
 	if(primer==NULL){
-		return false;
+		res=false;
 	}else{
 		if (primer==ultimo){
-			return true;
-		}//else{
-			/*Tripla<T> *aux1 = primer;
-			Tripla<T> *aux2 = primer->sig;
-
-			int nueva_frecuencia = aux1->frecuencia*/
-
-		//}
-		return false;
-	}	
+			res=true;
+		}
+	}
+	return res;
 }
 #endif
