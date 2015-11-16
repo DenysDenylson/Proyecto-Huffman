@@ -262,44 +262,57 @@ bool ListaForma8<T>::crear_arbol()
 		if (primer==ultimo){
 			res=true;
 		}else{
-			Tripla<T> *aux1=primer;
-			Tripla<T> *aux2=primer->sig;
 
-			int nueva_frec=aux1->frecuencia+aux2->frecuencia;
+			while (primer!=ultimo){
 
-			Tripla<T> *nuevo;
-			nuevo=new Tripla<T>;
+				Tripla<T> *aux1=primer;
+				Tripla<T> *aux2=primer->sig;
 
-			if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
-				&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)==1){ // PRIMER CASO
-					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
-					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
-					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux2->el,aux2->frecuencia);
+				int nueva_frec=aux1->frecuencia+aux2->frecuencia;
+
+				Tripla<T> *nuevo;
+				nuevo=new Tripla<T>;
+
+				if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
+					&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)==1){ // PRIMER CASO
+						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
+						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
+						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux2->el,aux2->frecuencia);
+				}else{
+					if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
+						&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)>1){ // SEGUNDO CASO
+							nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
+							nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
+							nuevo->arbol.RAIZ->S_DER=aux2->arbol.RAIZ;
+					}
+				}
+
+				// ES COMO UN INSERTAR EN SU LUGAR LLAMAR A LA FUNCION NO SE PODRIA PORQUE NO RECIBE UNA TRIPLA		
+				Tripla<T> *aux=primer;
+				while (aux->frecuencia<nueva_frec && aux->sig!=NULL){
+					aux=aux->sig;
+				}
+				if(aux!=ultimo){
+					nuevo->sig=aux;
+					nuevo->ant=aux->ant;
+					(aux->ant)->sig=nuevo;
+					aux->ant=nuevo;
+					nuevo->frecuencia=nueva_frec;
+				}else{
+					nuevo->ant=aux;
+					aux->sig=nuevo;
+					ultimo=nuevo;
+					nuevo->frecuencia=nueva_frec;
+				}
+				// FIN INSERTAR EN SU LUGAR
+
+				int res1=eliminarPRIN();
+				int res2=eliminarPRIN();
+
 			}
-
-					
-			Tripla<T> *aux=primer;
-			while (aux->frecuencia<nueva_frec && aux->sig!=NULL){
-				aux=aux->sig;
-			}
-			if(aux!=ultimo){
-				nuevo->sig=aux;
-				nuevo->ant=aux->ant;
-				(aux->ant)->sig=nuevo;
-				aux->ant=nuevo;
-				nuevo->frecuencia=nueva_frec;
-			}else{
-				nuevo->ant=aux;
-				aux->sig=nuevo;
-				ultimo=nuevo;
-				nuevo->frecuencia=nueva_frec;
-			}
-
-			int res1=eliminarPRIN();
-			int res2=eliminarPRIN();
-
-			return true;
+			res=true;			
 		}
 	}
+	return res;
 }
 #endif
