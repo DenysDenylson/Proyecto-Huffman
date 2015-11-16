@@ -240,14 +240,14 @@ void ListaForma8<T>::mostrar()
 		cout<<"L={}"<<endl;
 	}else{
 		Tripla<T> *aux=primer;
-		cout<<"L={";
+		cout<<"L={"<<endl;
 		while (aux->sig!=NULL){
-			cout<<aux->el<<"=>"<<aux->frecuencia<<" ABB => ";
-			aux->arbol.recorrerPRE(aux->arbol.RAIZ);
+			cout<<aux->el<<"("<<aux->frecuencia<<") ABB => "<<endl;
+			aux->arbol.recorrerPRE(aux->arbol.RAIZ); cout<<endl;
 			aux=aux->sig;
 		}
-		cout<<ultimo->el<<"=>"<<ultimo->frecuencia<<" ABB => ";	
-		ultimo->arbol.recorrerPRE(ultimo->arbol.RAIZ);
+		cout<<ultimo->el<<"("<<ultimo->frecuencia<<") ABB => "<<endl;	
+		ultimo->arbol.recorrerPRE(ultimo->arbol.RAIZ); cout<<endl;
 		cout<<"}"<<endl;
 	}	
 }
@@ -261,8 +261,45 @@ bool ListaForma8<T>::crear_arbol()
 	}else{
 		if (primer==ultimo){
 			res=true;
+		}else{
+			Tripla<T> *aux1=primer;
+			Tripla<T> *aux2=primer->sig;
+
+			int nueva_frec=aux1->frecuencia+aux2->frecuencia;
+
+			Tripla<T> *nuevo;
+			nuevo=new Tripla<T>;
+
+			if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
+				&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)==1){ // PRIMER CASO
+					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
+					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
+					nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux2->el,aux2->frecuencia);
+			}
+
+					
+			Tripla<T> *aux=primer;
+			while (aux->frecuencia<nueva_frec && aux->sig!=NULL){
+				aux=aux->sig;
+			}
+			if(aux!=ultimo){
+				nuevo->sig=aux;
+				nuevo->ant=aux->ant;
+				(aux->ant)->sig=nuevo;
+				aux->ant=nuevo;
+				nuevo->frecuencia=nueva_frec;
+			}else{
+				nuevo->ant=aux;
+				aux->sig=nuevo;
+				ultimo=nuevo;
+				nuevo->frecuencia=nueva_frec;
+			}
+
+			int res1=eliminarPRIN();
+			int res2=eliminarPRIN();
+
+			return true;
 		}
 	}
-	return res;
 }
 #endif

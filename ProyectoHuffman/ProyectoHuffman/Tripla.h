@@ -22,6 +22,8 @@ Tripla<T>::Tripla()
 {
 	sig=NULL;
 	ant=NULL;
+	el=NULL;
+	frecuencia=0;
 }
 
 template<class T>

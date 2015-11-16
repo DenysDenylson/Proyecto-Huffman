@@ -83,7 +83,7 @@ template <class T>
 void ABB<T>::recorrerPRE(Nodo<T> *RAIZ)
 {
 	if(RAIZ!=NULL){
-		cout<<RAIZ->el<<"=>"<<RAIZ->frecuencia<<",";
+		cout<<RAIZ->el<<"("<<RAIZ->frecuencia<<")"<<",";
 		recorrerPRE(RAIZ->S_IZQ);
 		recorrerPRE(RAIZ->S_DER);
 	}
