@@ -14,7 +14,7 @@ TUAD::~TUAD()
 
 void TUAD::cargarTxtTUAD()
 {
-	ifstream archivo("texto.txt");
+	ifstream archivo("cien_años_de_soledad.txt");
 	char car;
 	int res;
 	while (!archivo.eof()){
