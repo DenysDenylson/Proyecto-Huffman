@@ -6,7 +6,6 @@ using namespace std;
 template<class T>
 class ListaForma8{
 private:
-
 	Tripla<T> *primer;
 	Tripla<T> *ultimo;
 public:
@@ -142,8 +141,9 @@ int ListaForma8<T>::eliminarPRIN()
 		}else{
 			Tripla<T> *aux=primer;
 			primer=primer->sig;
-			primer->ant=NULL;
-			delete aux;
+			primer->ant=aux;
+			//primer->ant=NULL;
+			//delete aux;
 		}
 	}
 	return res;
@@ -262,31 +262,19 @@ bool ListaForma8<T>::crear_arbol()
 		if (primer==ultimo){
 			res=true;
 		}else{
-
 			while (primer!=ultimo){
-
-				Tripla<T> *aux1=primer;
-				Tripla<T> *aux2=primer->sig;
+				Nodo<T> *aux1=primer->arbol.RAIZ;
+				Nodo<T> *aux2=primer->sig->arbol.RAIZ;
 
 				int nueva_frec=aux1->frecuencia+aux2->frecuencia;
 
 				Tripla<T> *nuevo;
 				nuevo=new Tripla<T>;
 
-				if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
-					&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)==1){ // PRIMER CASO
-						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
-						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
-						nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux2->el,aux2->frecuencia);
-				}else{
-					if (aux1->arbol.calcularAlturaABB(aux1->arbol.RAIZ)==1 
-						&& aux2->arbol.calcularAlturaABB(aux2->arbol.RAIZ)>1){ // SEGUNDO CASO
-							nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
-							nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,aux1->el,aux1->frecuencia);
-							nuevo->arbol.RAIZ->S_DER=aux2->arbol.RAIZ;
-					}
-				}
-
+				nuevo->arbol.insertarABB(nuevo->arbol.RAIZ,NULL,nueva_frec);
+				nuevo->arbol.RAIZ->S_IZQ=aux1;
+				nuevo->arbol.RAIZ->S_DER=aux2;
+						
 				// ES COMO UN INSERTAR EN SU LUGAR LLAMAR A LA FUNCION NO SE PODRIA PORQUE NO RECIBE UNA TRIPLA		
 				Tripla<T> *aux=primer;
 				while (aux->frecuencia<nueva_frec && aux->sig!=NULL){
@@ -306,7 +294,7 @@ bool ListaForma8<T>::crear_arbol()
 				}
 				// FIN INSERTAR EN SU LUGAR
 
-				int res1=eliminarPRIN();
+				int res1=eliminarPRIN(); 
 				int res2=eliminarPRIN();
 
 			}

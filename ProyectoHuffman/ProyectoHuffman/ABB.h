@@ -17,6 +17,7 @@ public:
 	int contarNodosABB(Nodo<T> *RAIZ);
 	int calcularAlturaABB(Nodo<T> *RAIZ);
 	int buscarABB(Nodo<T> *RAIZ, T el);
+	//void armarArbolDerecho(Nodo<T> arbol);
 };
 
 template<class T>
@@ -140,5 +141,6 @@ int ABB<T>::buscarABB(Nodo<T> *RAIZ, T el)
 	}
 	return res;
 }
+
 
 #endif
