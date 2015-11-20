@@ -128,7 +128,9 @@ char elem;
 }while(opcion <=12 && opcion!=12);
 */
 	ListaForma8<char> lf8;
+    ABB<char> arbol;
 	char el;
+	string cod;
 	int opcion, res, existe = 0, frecuencia=0;
 
 		do
@@ -144,7 +146,7 @@ char elem;
 		//cout << "[3]   EliminarPRIN" << endl;
 		//cout << "[4]   EliminarFIN" << endl;
 		cout << "[5]   MOSTRARLISTA" << endl;
-		//cout << "[6]   INSERTARENSULUGAR" << endl;
+		cout << "[6]   INSERTARENSULUGAR" << endl;
 		//cout << "[7]   ELIMINARELEMENTODADO" << endl;
 		cout << "[8]   cargar_de_TUAD_a_Lista8" << endl;
 		cout << "[9]   crearABB" << endl;
@@ -224,6 +226,8 @@ char elem;
 
 				 case 9:
 					 cout<<lf8.crear_arbol();
+					 cod=arbol.crearCodigo(lf8.primer->arbol.RAIZ,'A',"");
+					 cout<<cod<<endl;
 					 system("pause");
 					 system("cls");
 					 break;

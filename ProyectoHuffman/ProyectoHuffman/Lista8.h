@@ -5,7 +5,7 @@
 using namespace std;
 template<class T>
 class ListaForma8{
-private:
+public:
 	Tripla<T> *primer;
 	Tripla<T> *ultimo;
 public:
@@ -21,6 +21,8 @@ public:
 	void extraerCarsTUAD();
 	void mostrar();
 	bool crear_arbol();
+	void llenarTabla();
+	bool comprimir();
 };
 
 template<class T>

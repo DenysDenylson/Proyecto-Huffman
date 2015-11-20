@@ -17,7 +17,7 @@ public:
 	int contarNodosABB(Nodo<T> *RAIZ);
 	int calcularAlturaABB(Nodo<T> *RAIZ);
 	int buscarABB(Nodo<T> *RAIZ, T el);
-	//void armarArbolDerecho(Nodo<T> arbol);
+	string crearCodigo(Nodo<T> *RAIZ, T el, string cod);
 };
 
 template<class T>
@@ -142,5 +142,20 @@ int ABB<T>::buscarABB(Nodo<T> *RAIZ, T el)
 	return res;
 }
 
+template <class T>
+string ABB<T>::crearCodigo(Nodo<T> *RAIZ, T el, string cod)
+{
+	if(RAIZ==NULL || el==RAIZ->el){
+		return cod;
+	}
+	if(el!=RAIZ->el){
+		RAIZ->visitado=0;
+	}
+		
+	  return cod=crearCodigo(RAIZ->S_IZQ,el,cod)+"0";
+	  return cod=crearCodigo(RAIZ->S_DER,el,cod)+"1";
+      RAIZ->visitado=1;
+
+}
 
 #endif
