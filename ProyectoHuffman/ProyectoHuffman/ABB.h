@@ -51,12 +51,12 @@ void ABB<T>::insertarABB(Nodo<T> *&RAIZ, T el, int frecuencia)
 		RAIZ->el=el;
 		RAIZ->frecuencia=frecuencia;
 	}else{
-		//if (el<RAIZ->el){
-		if(RAIZ->S_IZQ==NULL){
+		if (el<RAIZ->el){
+		//if(RAIZ->S_IZQ==NULL){
 			insertarABB(RAIZ->S_IZQ, el, frecuencia);
 		}else{
-			//if (el>RAIZ->el){
-			if(RAIZ->S_DER==NULL){
+			if (el>RAIZ->el){
+			//if(RAIZ->S_DER==NULL){
 				insertarABB(RAIZ->S_DER, el, frecuencia);
 			}
 		}
@@ -148,14 +148,14 @@ string ABB<T>::crearCodigo(Nodo<T> *RAIZ, T el, string cod)
 	if(RAIZ==NULL || el==RAIZ->el){
 		return cod;
 	}
-	if(el!=RAIZ->el){
-		RAIZ->visitado=0;
+	else{
+		if(buscarABB(RAIZ->S_IZQ,el)){
+	        cod="0"+crearCodigo(RAIZ->S_IZQ,el,cod);
+		}else{
+	        cod="1"+crearCodigo(RAIZ->S_DER,el,cod);
+		}
 	}
-		
-	  return cod=crearCodigo(RAIZ->S_IZQ,el,cod)+"0";
-	  return cod=crearCodigo(RAIZ->S_DER,el,cod)+"1";
-      RAIZ->visitado=1;
-
+      return cod;
 }
 
 #endif

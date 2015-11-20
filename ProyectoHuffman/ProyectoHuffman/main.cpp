@@ -199,11 +199,16 @@ char elem;
 					 break;
 
 				 case 6:
-					 cout<<"elemento:";
+					/* cout<<"elemento:";
 					 cin >> el; cout << endl;
 					 cout << "frecuencia:";
-					 cin >> frecuencia;
-					 res=lf8.insertarEnSuLUGAR(el,frecuencia);
+					 cin >> frecuencia;*/
+
+					 res=lf8.insertarEnSuLUGAR('E',2);
+					 cout<<res<<endl;
+					 res=lf8.insertarEnSuLUGAR('D',5);
+					 cout<<res<<endl;
+					 res=lf8.insertarEnSuLUGAR('C',6);
 					 cout<<res<<endl;
 					 system("pause");
 					 system("cls");
@@ -226,7 +231,8 @@ char elem;
 
 				 case 9:
 					 cout<<lf8.crear_arbol();
-					 cod=arbol.crearCodigo(lf8.primer->arbol.RAIZ,'A',"");
+					 cout<<endl;
+					 cod=arbol.crearCodigo(lf8.primer->arbol.RAIZ,'C', "");
 					 cout<<cod<<endl;
 					 system("pause");
 					 system("cls");
