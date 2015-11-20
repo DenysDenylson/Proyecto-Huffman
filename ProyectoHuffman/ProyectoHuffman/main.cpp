@@ -151,6 +151,7 @@ char elem;
 		cout << "[8]   cargar_de_TUAD_a_Lista8" << endl;
 		cout << "[9]   crearABB" << endl;
 		cout << "[10]  SALIR" << endl;
+		cout << "[11]  LLENAR TABLA" << endl;
 		cout << "Ingresar opcion: " ;
 		cin >> opcion;
 		switch (opcion)
@@ -232,13 +233,20 @@ char elem;
 				 case 9:
 					 cout<<lf8.crear_arbol();
 					 cout<<endl;
-					 cod=arbol.crearCodigo(lf8.primer->arbol.RAIZ,'C', "");
+					 //cod = arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'C', "");
+					 cod = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'E', "");
 					 cout<<cod<<endl;
 					 system("pause");
 					 system("cls");
 					 break;
 				 case 10:
 					 cout<<"Saliendo..."<<endl;
+					 break;
+				 case 11:
+					 lf8.llenarTabla();
+
+					 system("pause");
+					 system("cls");
 					 break;
 				 default:
 					 opcion=10;

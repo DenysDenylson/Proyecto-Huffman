@@ -234,7 +234,6 @@ void ListaForma8<T>::extraerCarsTUAD()
 	}
 }
 
-
 template<class T>
 void ListaForma8<T>::mostrar()
 {
@@ -305,4 +304,33 @@ bool ListaForma8<T>::crear_arbol()
 	}
 	return res;
 }
+
+template<class T>
+void ListaForma8<T>::llenarTabla(){
+	//TUAD tuad;
+	//tuad.cargarTxtTUAD();
+	/*char let;
+
+	tuad.insertarTUAD('a');
+	tuad.insertarTUAD('a');
+	tuad.insertarTUAD('a');
+
+	tuad.mostrarTUAD();*/
+	/*for (int i = 0; i<26; i++){
+		let = i + 65;
+		insertarEnSuLUGAR(let, tuad.vec[i]);
+	}*/
+
+	char letras[26];
+	string binarios[26];
+
+	for (int i = 0; i < 26; i++){
+		char letra = i+65;
+		letras[i] = letra;
+		binarios[i] = primer->arbol.crearCodigo(primer->arbol.RAIZ, letra, " ");
+		cout << letra <<"::"<< binarios[i] << endl;
+	}
+
+}
+
 #endif

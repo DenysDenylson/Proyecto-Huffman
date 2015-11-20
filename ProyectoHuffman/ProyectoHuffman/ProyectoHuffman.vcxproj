@@ -82,7 +82,9 @@
     <ClCompile Include="TUAD.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ABB.h" />
     <ClInclude Include="Lista8.h" />
+    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Tripla.h" />
     <ClInclude Include="TUAD.h" />
   </ItemGroup>
