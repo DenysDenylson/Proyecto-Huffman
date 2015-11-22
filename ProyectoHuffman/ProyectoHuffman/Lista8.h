@@ -307,21 +307,21 @@ bool ListaForma8<T>::crear_arbol()
 
 template<class T>
 void ListaForma8<T>::llenarTabla(){
-	//TUAD tuad;
+	TUAD tuad;
 	//tuad.cargarTxtTUAD();
-	/*char let;
-
+	char let;
+	
 	tuad.insertarTUAD('a');
 	tuad.insertarTUAD('a');
 	tuad.insertarTUAD('a');
 
-	tuad.mostrarTUAD();*/
+	tuad.mostrarTUAD();
 	/*for (int i = 0; i<26; i++){
 		let = i + 65;
 		insertarEnSuLUGAR(let, tuad.vec[i]);
-	}*/
-
-	char letras[26];
+	}
+*/
+	/*char letras[26];
 	string binarios[26];
 
 	for (int i = 0; i < 26; i++){
@@ -329,7 +329,7 @@ void ListaForma8<T>::llenarTabla(){
 		letras[i] = letra;
 		binarios[i] = primer->arbol.crearCodigo(primer->arbol.RAIZ, letra, " ");
 		cout << letra <<"::"<< binarios[i] << endl;
-	}
+	}*/
 
 }
 
