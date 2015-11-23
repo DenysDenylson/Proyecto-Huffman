@@ -3,7 +3,7 @@
 
 TUAD::TUAD()
 {
-	for (int i = 0; i < 50; i++){
+	for (int i = 0; i < 60; i++){
 		vec[i]=0;
 	}
 }
@@ -44,7 +44,7 @@ int TUAD::insertarTUAD(char l)
 void TUAD::mostrarTUAD()
 {
 	char let;
-	for(int i=0; i<26; i++){
+	for(int i=0; i<60; i++){
 		let=i+65;
 		cout<<let<<"="<<vec[i]<<endl;
 	}
