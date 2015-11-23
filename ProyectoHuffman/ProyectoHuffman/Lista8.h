@@ -8,6 +8,8 @@ class ListaForma8{
 public:
 	Tripla<T> *primer;
 	Tripla<T> *ultimo;
+
+	TUAD tuad;
 public:
 	ListaForma8();
 	~ListaForma8();	
@@ -23,6 +25,8 @@ public:
 	bool crear_arbol();
 	void llenarTabla();
 	bool comprimir();
+
+	string getBinarioLetra(char letra);
 };
 
 template<class T>
@@ -307,29 +311,41 @@ bool ListaForma8<T>::crear_arbol()
 
 template<class T>
 void ListaForma8<T>::llenarTabla(){
-	TUAD tuad;
-	//tuad.cargarTxtTUAD();
-	char let;
+	//TUAD tuad;
+	char letra;
 	
-	tuad.insertarTUAD('a');
-	tuad.insertarTUAD('a');
-	tuad.insertarTUAD('a');
+	//tuad.insertarTUAD('a');
+	//tuad.insertarTUAD('a');
+	//tuad.insertarTUAD('a');
 
-	tuad.mostrarTUAD();
-	/*for (int i = 0; i<26; i++){
-		let = i + 65;
-		insertarEnSuLUGAR(let, tuad.vec[i]);
+	string palabra = "1230";
+	int num = stoi(palabra);//convierto de string a INT
+	
+	string binario = "";
+	int valor_binario;
+	int altura = primer->arbol.calcularAlturaABB(primer->arbol.RAIZ);
+
+	for (int i = 0; i<60; i++){
+		binario = "";
+		letra = i + 65;
+		binario = primer->arbol.crearCodigo(primer->arbol.RAIZ, letra, binario);
+		if (binario.length() != altura){
+			valor_binario = stoi(binario);
+			tuad.vec[i] = valor_binario;
+		}else{
+			tuad.vec[i] = -1;
+		}		
 	}
-*/
-	/*char letras[26];
-	string binarios[26];
+	tuad.mostrarTUAD();
 
-	for (int i = 0; i < 26; i++){
-		char letra = i+65;
-		letras[i] = letra;
-		binarios[i] = primer->arbol.crearCodigo(primer->arbol.RAIZ, letra, " ");
-		cout << letra <<"::"<< binarios[i] << endl;
-	}*/
+	//cout << "altura ::" << primer->arbol.calcularAlturaABB(primer->arbol.RAIZ)<<endl;
+}
+
+template<class T>
+string ListaForma8<T>::getBinarioLetra(char letra){
+
+	string numero = 
+	return "";
 
 }
 

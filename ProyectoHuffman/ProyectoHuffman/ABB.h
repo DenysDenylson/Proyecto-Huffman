@@ -148,9 +148,7 @@ string ABB<T>::crearCodigo(Nodo<T> *RAIZ, T el, string cod)
 	if(RAIZ==NULL || el==RAIZ->el){
 		return cod;
 	}
-	else{
-		
-		
+	else{		
 			if (buscarABB(RAIZ->S_IZQ, el)){
 				cod = "0" + crearCodigo(RAIZ->S_IZQ, el, cod);
 			}
