@@ -14,7 +14,7 @@ TUAD::~TUAD()
 
 void TUAD::cargarTxtTUAD()
 {
-	ifstream archivo("cien_años_de_soledad.txt");
+	ifstream archivo("texto.txt");
 	char car;
 	int res;
 	while (!archivo.eof()){
@@ -27,7 +27,7 @@ void TUAD::cargarTxtTUAD()
 int TUAD::funcionTUAD(char l)
 {
 	int let=l;
-	int res=0;
+	int res=32;
 	if (let>=65 && let<=90){
 		res = let-65;}
 	if (let>=97 && let<=122){

@@ -22,7 +22,7 @@ public:
 	void mostrar();
 	bool crear_arbol();
 	void llenarTabla();
-	bool comprimir();
+	int comprimirArchivo(FILE *arch_in, FILE *arch_out, string tablaCodigos[]);
 };
 
 template<class T>
@@ -278,7 +278,7 @@ bool ListaForma8<T>::crear_arbol()
 						
 				// ES COMO UN INSERTAR EN SU LUGAR LLAMAR A LA FUNCION NO SE PODRIA PORQUE NO RECIBE UNA TRIPLA		
 				Tripla<T> *aux=primer;
-				while (aux->frecuencia<nueva_frec && aux->sig!=NULL){
+				while (aux->frecuencia<=nueva_frec && aux->sig!=NULL){
 					aux=aux->sig;
 				}
 				if(aux!=ultimo){
@@ -331,6 +331,31 @@ void ListaForma8<T>::llenarTabla(){
 		cout << letra <<"::"<< binarios[i] << endl;
 	}
 
+}
+
+template<class T>
+int ListaForma8<T>::comprimirArchivo(FILE *arch_in, FILE *arch_out, string tablaCodigos[])
+{
+	unsigned char buffer=0;
+	string codigo;
+	int posChar, length, bitsLeft = 8, nbit=0;
+
+	while ((posChar=fgetc(arch_in))!=EOF){ 
+		codigo=tablaCodigos[posChar];
+		length=codigo.length();
+		while (length>0){
+
+			bitsLeft--;
+            length--;
+			nbit++;
+			if (bitsLeft==0){
+				fputc(buffer,arch_out);
+                buffer = 0;
+                bitsLeft = 8;
+            }
+		}
+	}
+	return (0);
 }
 
 #endif

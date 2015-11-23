@@ -1,6 +1,7 @@
 #include"TUAD.h"
 #include"Lista8.h"
 #include"ABB.h"
+#pragma warning(disable:4996)
 
 int main(){
 /*
@@ -129,9 +130,10 @@ char elem;
 */
 	ListaForma8<char> lf8;
     ABB<char> arbol;
+	string binarios[32];
 	char el;
 	string cod;
-	int opcion, res, existe = 0, frecuencia=0;
+	int opcion, res, existe = 0, frecuencia=0;	
 
 		do
 		{
@@ -152,6 +154,7 @@ char elem;
 		cout << "[9]   crearABB" << endl;
 		cout << "[10]  SALIR" << endl;
 		cout << "[11]  LLENAR TABLA" << endl;
+		cout << "[12]  COMPRIMIR ARCHIVO" << endl;
 		cout << "Ingresar opcion: " ;
 		cin >> opcion;
 		switch (opcion)
@@ -243,11 +246,27 @@ char elem;
 					 cout<<"Saliendo..."<<endl;
 					 break;
 				 case 11:
-					 lf8.llenarTabla();
-
+					 //lf8.llenarTabla();
+					for (int i = 0; i<32; i++){
+						char letra = i+65;
+						binarios[i] = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, letra, "");
+						cout << letra <<"::"<< binarios[i] << endl;
+					}
 					 system("pause");
 					 system("cls");
 					 break;
+                 case 12:
+					 FILE *input, *output;
+					 input=fopen("texto.txt", "r");
+					 output=fopen("output.txt","w");
+					 lf8.comprimirArchivo(input, output, binarios);
+					 fclose(input);
+                     fclose(output);
+					 system("pause");
+					 system("cls");
+					 break;
+
+
 				 default:
 					 opcion=10;
 		}	  
