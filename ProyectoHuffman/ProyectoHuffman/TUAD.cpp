@@ -46,6 +46,8 @@ void TUAD::mostrarTUAD()
 	char let;
 	for(int i=0; i<60; i++){
 		let=i+65;
+		if(vec[i]!=-1){
 		cout<<let<<"="<<vec[i]<<endl;
+		}
 	}
 }

@@ -328,7 +328,7 @@ void ListaForma8<T>::llenarTabla(){
 		binario = "";
 		letra = i + 65;
 		binario = primer->arbol.crearCodigo(primer->arbol.RAIZ, letra, binario);
-		if (binario.length() != altura){
+		if (binario.length() < altura){
 			valor_binario = stoi(binario);
 			tuad.vec[i] = valor_binario;
 		}else{
@@ -356,9 +356,15 @@ int ListaForma8<T>::comprimirArchivo(FILE *arch_in, FILE *arch_out, string tabla
 	int posChar, length, bitsLeft = 8, nbit=0;
 
 	while ((posChar=fgetc(arch_in))!=EOF){ 
-		codigo=tablaCodigos[posChar];
+		//codigo=tablaCodigos[posChar];
+		codigo=to_string(tuad.vec[posChar]);
 		length=codigo.length();
 		while (length>0){
+			if (codigo[nbit]==0){ //inserta un CERO a la derecha del BYTE
+				buffer=buffer<<1;}
+
+			if (codigo[nbit]==1){ //inserta un UNO a la derecha del BYTE
+				buffer=(buffer<<1) | 1;}
 
 			bitsLeft--;
             length--;
@@ -369,6 +375,11 @@ int ListaForma8<T>::comprimirArchivo(FILE *arch_in, FILE *arch_out, string tabla
                 bitsLeft = 8;
             }
 		}
+
+		/*if (bitsLeft!=8){
+          buffer = buffer << (bitsLeft-1);
+          fputc(buffer,output);
+        }*/
 	}
 	return (0);
 }

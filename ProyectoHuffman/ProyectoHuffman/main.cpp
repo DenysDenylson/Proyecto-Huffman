@@ -132,7 +132,7 @@ char elem;
     ABB<char> arbol;
 	string binarios[32];
 	char el;
-	string cod;
+	string cod1,cod2,cod3,cod4,cod5,cod6,cod7;
 	int opcion, res, existe = 0, frecuencia=0;	
 
 		do
@@ -208,12 +208,18 @@ char elem;
 					 cout << "frecuencia:";
 					 cin >> frecuencia;*/
 
-					 res=lf8.insertarEnSuLUGAR('E',2);
+					 res=lf8.insertarEnSuLUGAR('A',10);
 					 cout<<res<<endl;
-					 res=lf8.insertarEnSuLUGAR('D',5);
+					 res=lf8.insertarEnSuLUGAR('B',8);
 					 cout<<res<<endl;
 					 res=lf8.insertarEnSuLUGAR('C',6);
 					 cout<<res<<endl;
+					 res=lf8.insertarEnSuLUGAR('D',5);
+					 cout<<res<<endl;
+					 res=lf8.insertarEnSuLUGAR('E',2);
+					 cout<<res<<endl;
+					 //res=lf8.insertarEnSuLUGAR('J',1);
+					 //cout<<res<<endl;
 					 system("pause");
 					 system("cls");
 					 break;
@@ -237,8 +243,7 @@ char elem;
 					 cout<<lf8.crear_arbol();
 					 cout<<endl;
 					 //cod = arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'C', "");
-					 cod = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'E', "");
-					 cout<<cod<<endl;
+					 cout<<arbol.calcularAlturaABB(lf8.primer->arbol.RAIZ);
 					 system("pause");
 					 system("cls");
 					 break;
@@ -247,11 +252,16 @@ char elem;
 					 break;
 				 case 11:
 					 //lf8.llenarTabla();
-					for (int i = 0; i<32; i++){
-						char letra = i+65;
-						binarios[i] = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, letra, "");
-						cout << letra <<"::"<< binarios[i] << endl;
-					}
+                     cod1 = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'A', "");
+					 cod2 = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'B', "");
+					 cod3 = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'C', "");
+					 cod4 = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'D', "");
+					 cod5 = lf8.primer->arbol.crearCodigo(lf8.primer->arbol.RAIZ, 'E', "");
+					 cout<<"A => "<<cod1<<endl;
+					 cout<<"B => "<<cod2<<endl;
+					 cout<<"C => "<<cod3<<endl;
+					 cout<<"D => "<<cod4<<endl;
+					 cout<<"E => "<<cod5<<endl;
 					 system("pause");
 					 system("cls");
 					 break;
